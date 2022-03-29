@@ -66,8 +66,3 @@ function AssignmentDetailPage(props){
   ); 
 }
 export default AssignmentDetailPage;
-
-
-/*git remote add origin https://github.com/PaneruVipin/app.CodeYogi.PaneruVipin.git
-git branch -M main
-git push -u origin main*/

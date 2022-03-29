@@ -63,7 +63,7 @@ function AssignmentDetailPage(props){
       <AssignmentDetailRow about={dueDateList}>Due Date</AssignmentDetailRow>
       <AssignmentDetailRow about={discriptionList}>Description</AssignmentDetailRow>
     </div>
-  );
+  ); 
 }
 export default AssignmentDetailPage;
 

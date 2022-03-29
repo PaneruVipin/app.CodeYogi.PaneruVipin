@@ -37,7 +37,7 @@ function LecturePage(){
   }
    const checkPassword=()=>{
       setPasswordValue('');
-     if(passwordValue==='codyogi@324'){
+     if(passwordValue==='codeyogi@123'){
     setShowPassword(!showPassword);
        setShowAdminForm(!showAdminForm)
    }

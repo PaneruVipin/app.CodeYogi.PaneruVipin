@@ -31,7 +31,7 @@ function AssignmentPage(){
   }
    const checkPassword=()=>{
       setPasswordValue('');
-     if(passwordValue==='codyogi@324'){
+     if(passwordValue==='codeyogi@123'){
     setShowPassword(!showPassword);
        setShowAdminForm(!showAdminForm)
    }
@@ -80,10 +80,9 @@ function AssignmentPage(){
 }
 function getObject(dateList, dueDateList, titleList,inputValue,inputChange,submitClick,buttonClick,updateClick,linkList){
 const HTML=[];
-  const link=linkList[0];
-  console.log(link)
-  const  aTag= <a className=' w-full py-4 text-lg grow border-l-2 border-gray-200 text-center text-indigo-500 ' href={link}  target='blank'>see your submission</a>;
   for (let i = 0; i < dateList.length; i++) {
+  const link=linkList[0];
+  const  aTag= <a className=' w-full py-4 text-lg grow border-l-2 border-gray-200 text-center text-indigo-500 ' href={link}  target='blank'>see your submission</a>;
    
     const id='#'+(i+1);
    const title=titleList[i];

@@ -1,13 +1,12 @@
 import React from 'react';
-import CodyogiApp from './CodyogiApp';
+import Path from './Path';
 import{ BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
     <BrowserRouter>
-   <CodyogiApp/>
+   <Path/>
     </BrowserRouter>
   );
 }
-
 export default App;

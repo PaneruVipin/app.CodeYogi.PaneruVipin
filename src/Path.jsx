@@ -5,11 +5,12 @@ import LecturePage from './LecturePage';
 import QuizPage from './QuizPage';
 import MainLayout from './MainLayout';
 import ProfilePage from './ProfilePage';
+import AssignmentDetailPage from './AssignmentDetailPage';
 import {
   Routes,
   Route
 } from "react-router-dom";
-function CodyogiApp(){
+function Path(){
   return(
     <div>
       <Routes>
@@ -18,6 +19,8 @@ function CodyogiApp(){
            <Route path='assignment' element={<AssignmentPage/>}/>
       <Route path='lecture' element={<LecturePage/>}/>
          <Route path='profile' element={<ProfilePage/>}/> 
+          assignmentDetails
+          <Route path='assignmentDetails' element={<AssignmentDetailPage/>}/> 
         </Route>
       <Route path='quiz' element={<QuizPage/>}/>
       <Route path='*' element={<NotFoundPage/>}/>
@@ -25,4 +28,4 @@ function CodyogiApp(){
     </div>
   );
 }
-export default CodyogiApp;
+export default Path;

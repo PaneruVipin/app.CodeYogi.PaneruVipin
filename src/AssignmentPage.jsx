@@ -71,7 +71,7 @@ function AssignmentPage(){
     {showAdminForm && <div className='bg-gray-500 md:fixed inset-0 md:px-60 md:pt-10 bg-opacity-50'><AssignmentAdminPage dueDateChange={dueDateChange} dateChange={dateChange} titleChange={titleChange} dateValue={dateValue} dueDateValue={dueDateValue} titleValue={titleValue} uploadClick={uploadClick}/> </div>}
     <H1 secondry>Assignment List</H1>
     <div className='bg-gray-50 max-w-7xl '>
-      <div className='mx-auto max-w-4xl space-y-6 py-6 px-4 sm:pt-4 sm:pb-8' >
+      <div className='mx-auto max-w-4xl space-y-6 py-6 sm:pt-4 sm:pb-8' >
         {getObject(dateList, dueDateList, titleList,inputValue,inputChange,submitClick,buttonClick,updateClick,linkList)}
         </div>
     </div>

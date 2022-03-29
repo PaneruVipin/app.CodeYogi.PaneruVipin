@@ -10,7 +10,7 @@ function LeftSideBar(props){
     theme=' w-2/3 sm:w-1/2 sticky  '
   }
   return(
-     <div className={' bg-gray-800 h-screen  p-4 inset-y-0 flex flex-col  ' + theme}>
+     <div className={' bg-gray-800 h-screen  p-4 inset-y-0 flex flex-col pb-10 md:pb-4 ' + theme}>
        <H1>CODYOGI</H1>
        <div className='flex flex-col grow mt-5 justify-between'>
          <div className='space-y-1'>
@@ -18,7 +18,7 @@ function LeftSideBar(props){
       <MyLink to='lecture'  icon={<GiTeacher  className=' flex-shrink-0 h-6 w-6'/>}>Lectures</MyLink>
             <MyLink to='assignment' icon={<MdOutlineAssignment  className=' flex-shrink-0 h-6 w-6'/>}>Assignment</MyLink>
            </div>
-      <MyLink  to='profile'  icon={<CgProfile  className=' flex-shrink-0 h-6 w-6'/>}>Profile</MyLink>
+      <MyLink  to='profile'  icon={<CgProfile  className=' flex-shrink-0 h-6 w-6 '/>}>Profile</MyLink>
     </div>
        </div> 
   );

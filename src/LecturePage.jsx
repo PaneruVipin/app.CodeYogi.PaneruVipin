@@ -66,7 +66,7 @@ function LecturePage(){
       {showAdminForm && <div className='bg-gray-500 md:fixed inset-0 md:px-60 md:pt-10 bg-opacity-50'><LectureAdminPage linkChange={linkChange} linkValue={linkValue} dateChange={dateChange} durationChange={durationChange} discriptionChange={discriptionChange} topiksChange={topiksChange} dateValue={dateValue} durationValue={durationValue} discriptionValue={discriptionValue} topiksValue={topiksValue} uploadClick={uploadClick}/> </div>}
     <H1 secondry>Session List</H1>
     <div className='bg-gray-50 max-w-7xl  '>
-      <div className='mx-auto max-w-4xl space-y-6 px-4 sm:px-0 py-6 sm:pt-4 sm:pb-8' >
+      <div className='mx-auto max-w-4xl space-y-6  sm:px-0 py-6 sm:pt-4 sm:pb-8' >
         {getObject(dateList,durationList,discriptionList,topiksList,linkList)}
         </div>
     </div>

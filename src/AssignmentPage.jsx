@@ -46,19 +46,6 @@ function AssignmentPage(){
      setShowAdminForm(!showAdminForm);
      setAddAssignment(!addAssignment);
   }
-  const [inputValue, setInputValue]=React.useState('')
-  const [buttonClick, setButtonClick]=React.useState(false)
-  const [linkList, setlinkList]=React.useState([])
-  const inputChange=(event)=>{
-    setInputValue(event.target.value);
-  }
-  const submitClick=()=>{
-    setButtonClick(!buttonClick);
-  }
-  const updateClick=()=>{
-    setButtonClick(!buttonClick);
-    setlinkList([inputValue]);
-  }
   return(
   <div className='space-y-5'>
     <div className='   space-y-2'>
@@ -72,25 +59,23 @@ function AssignmentPage(){
     <H1 secondry>Assignment List</H1>
     <div className='bg-gray-50 max-w-7xl '>
       <div className='mx-auto max-w-4xl space-y-6 py-6 sm:pt-4 sm:pb-8' >
-        {getObject(dateList, dueDateList, titleList,inputValue,inputChange,submitClick,buttonClick,updateClick,linkList)}
+        {getObject(dateList, dueDateList, titleList)}
         </div>
     </div>
   </div>
   );
 }
-function getObject(dateList, dueDateList, titleList,inputValue,inputChange,submitClick,buttonClick,updateClick,linkList){
+function getObject(dateList, dueDateList, titleList){
 const HTML=[];
   for (let i = 0; i < dateList.length; i++) {
-  const link=linkList[0];
-  const  aTag= <a className=' w-full py-4 text-lg grow border-l-2 border-gray-200 text-center text-indigo-500 ' href={link}  target='blank'>see your submission</a>;
-   
+ 
     const id='#'+(i+1);
    const title=titleList[i];
    const date=dateList[i];
    const letNote=[i];
    const dueDate=dueDateList[i];
     const html=
-    <Assignment aTag={link  &&  aTag} secondry={link  && true} updateClick={updateClick} buttonClick={buttonClick} onClick={submitClick} submitChange={inputChange} submitValue={inputValue} id={id} key={id} title={title} date={date} dueDate={dueDate}></Assignment>;
+    <Assignment  id={id} key={id} title={title} date={date} dueDate={dueDate}></Assignment>;
     HTML.push(html)
   }
     

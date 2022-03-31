@@ -31,7 +31,7 @@ function AssignmentDetailPage(props){
       }
    const checkPassword=()=>{
       setPasswordValue('');
-     if(passwordValue==='codeyogi@123'){
+     if(passwordValue==='a'){
     setShowPassword(!showPassword);
        setShowAdminForm(!showAdminForm)
        }
@@ -40,7 +40,7 @@ function AssignmentDetailPage(props){
      if(discriptionValue==='' || dueDateValue==='' || titleValue==='' ||discriptionValue===undefined || dueDateValue===undefined || titleValue===undefined)       {
        return;
         }
-         setDiscriptionValue(discriptionValue)
+        setDiscriptionValue(discriptionValue)
     setDueDateList(dueDateValue)
     setTitleList(titleValue)
      setShowAdminForm(!showAdminForm);

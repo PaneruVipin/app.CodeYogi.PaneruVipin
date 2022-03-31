@@ -5,14 +5,18 @@ import FormCard from './FormCard';
 import Button from './Button';
 import AssignmentAdminPage from './AssignmentAdminPage';
 import { FiLogIn } from 'react-icons/fi';
+
 function AssignmentPage(){
    const [dateValue, setDateValue]=React.useState('')
   const [dueDateValue, setDueDateValue]=React.useState('')
   const [titleValue, setTitleValue]=React.useState('')
   
-  const [titleList, setTitleList]=React.useState(['Practice responsive design'])
-  const [dateList, setDateList]=React.useState(['Tue Mar 22 2022'])
-  const [dueDateList, setDueDateList]=React.useState(['Fri Jan 21 2022'])
+  const saveTitleList = JSON.parse(localStorage.getItem('titleList')) || ['Practice responsive design'];
+  const saveDateList = JSON.parse(localStorage.getItem('dateList')) || ['Tue Mar 22 2022'];
+  const saveDueDateList = JSON.parse(localStorage.getItem('dueDateList')) || ['Fri Jan 21 2022'];
+  const [titleList, setTitleList]=React.useState(saveTitleList)
+  const [dateList, setDateList]=React.useState(saveDateList)
+  const [dueDateList, setDueDateList]=React.useState(saveDueDateList)
   
   const dateChange=(event)=>setDateValue(event.target.value);
   const dueDateChange=(event)=>setDueDateValue(event.target.value);
@@ -31,7 +35,7 @@ function AssignmentPage(){
   }
    const checkPassword=()=>{
       setPasswordValue('');
-     if(passwordValue==='codeyogi@123'){
+     if(passwordValue==='a'){
     setShowPassword(!showPassword);
        setShowAdminForm(!showAdminForm)
    }
@@ -44,8 +48,11 @@ function AssignmentPage(){
     setDueDateList([...dueDateList,dueDateValue])
     setTitleList([...titleList,titleValue])
      setShowAdminForm(!showAdminForm);
-     setAddAssignment(!addAssignment);
+     setAddAssignment(!addAssignment); 
+localStorage.setItem('titleList',JSON.stringify([...titleList,titleValue]));  localStorage.setItem('dueDateList',JSON.stringify([...dueDateList,dueDateValue]));  localStorage.setItem('dateList',JSON.stringify([...dateList,dateValue]));
   }
+  const savelinkList=JSON.parse(localStorage.getItem('linkList')) || []
+const linkList=savelinkList
   return(
   <div className='space-y-5'>
     <div className='   space-y-2'>
@@ -58,27 +65,35 @@ function AssignmentPage(){
     {showAdminForm && <div className='bg-gray-500 md:fixed inset-0 md:px-60 md:pt-10 bg-opacity-50'><AssignmentAdminPage dueDateChange={dueDateChange} dateChange={dateChange} titleChange={titleChange} dateValue={dateValue} dueDateValue={dueDateValue} titleValue={titleValue} uploadClick={uploadClick}/> </div>}
     <H1 secondry>Assignment List</H1>
     <div className='bg-gray-50 max-w-7xl '>
-      <div className='mx-auto max-w-4xl space-y-6 py-6 sm:pt-4 sm:pb-8' >
-        {getObject(dateList, dueDateList, titleList)}
+      <div className='mx-auto max-w-4xl  py-6 pt-4 px-4 pb-8 flex flex-col-reverse' >
+        {getObject(dateList, dueDateList, titleList,linkList)}
         </div>
     </div>
   </div>
   );
 }
-function getObject(dateList, dueDateList, titleList){
+function getObject(dateList, dueDateList, titleList,linkList){
 const HTML=[];
+     
   for (let i = 0; i < dateList.length; i++) {
  
+    let link='savelinkList';
+    /*localStorage.setItem("lastname", "Smith");
+localStorage.getItem("lastname");*/
+  const update=(submitValue)=>{
+       link = submitValue
+    linkList[i]=link
+    console.log(linkList)
+    localStorage.setItem('linkList', JSON.stringify(linkList))
+  }
     const id='#'+(i+1);
    const title=titleList[i];
    const date=dateList[i];
-   const letNote=[i];
    const dueDate=dueDateList[i];
     const html=
-    <Assignment  id={id} key={id} title={title} date={date} dueDate={dueDate}></Assignment>;
+    <Assignment update={update} link={linkList[i]} to={'/assignment/'+(i+1)+'/details'}  id={id} key={id} title={title} date={date} dueDate={dueDate}></Assignment>;
     HTML.push(html)
   }
-    
-  return HTML;
+  return HTML; 
 }
 export default AssignmentPage;

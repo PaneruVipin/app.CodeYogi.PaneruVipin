@@ -7,30 +7,32 @@ import Button from './Button';
 import { Link } from "react-router-dom";
 import FormCard from './FormCard';
 function Assignment(props){
-  const [buttonHTML, setButtonHTML] =React.useState('Submit')
-  const [status, setStatus] =React.useState('Not Submitted')
-  const [theme, setTheme] =React.useState('text-red-500')
-    const [submitValue, setSubmitValue]=React.useState('')
+  
   const [buttonClick, setButtonClick]=React.useState(false)
-  const [linkList, setlinkList]=React.useState('')
+  const [submitValue, setSubmitValue]=React.useState('')
   const submitChange=(event)=>{
-    setSubmitValue(event.target.value);
-      }
-  const submitClick=()=>{
-    setButtonClick(!buttonClick);
-      }
+    setSubmitValue(event.target.value)
+  }
   const updateClick=()=>{
-    setButtonClick(!buttonClick);
-    setlinkList(submitValue);
-    if(submitValue!=''){
-      setButtonHTML('Re-Submit')
-      setStatus('Submitted')
-      setTheme('text-green-500')
-    }
-   }
+    props.update(submitValue)
+    setButtonClick(!buttonClick)
+  }
+  const submitClick=()=>{
+    setButtonClick(!buttonClick)
+  }
+  const linkgs=JSON.parse(localStorage.getItem('linkList'))
+  
+  let theme='text-red-500'
+  let status='Not Submitted'
+  let buttonHTML='Submit'
+  if(props.link){
+    theme='text-green-500'
+   status='Submitted'
+    buttonHTML='Re-Submit'
+  }
   return(
-     <div className='border border-gray-200 bg-white rounded-lg shadow-lg py-2 pl-3 pr-4'>
-       { buttonClick && <div className='fixed bg-gray-500 bg-opacity-50 inset-x-0 inset-y-0 flex justify-center items-center px-4 '>
+     <div className='border border-gray-200 bg-white rounded-lg shadow-lg py-2 pl-3 pr-4 mb-6'>
+       {buttonClick && <div className='fixed bg-gray-500 bg-opacity-50 inset-x-0 inset-y-0 flex justify-center items-center px-4 '>
       <div className='bg-white max-w-7xl px-4 grow  max-w-4xl '>
       <div className='pl-6 py-6  border-b border-gray-200'>
       </div>
@@ -42,7 +44,7 @@ function Assignment(props){
     </div>
     </div>
     }
-       <Link to='/assignmentDetails'>
+       <Link to={props.to}>
         <div className='md:flex md:flex-row  justify-between items-center  '>
         <div className='bg-white'>
         <div className='flex space-x-6 text-lg'>
@@ -56,13 +58,15 @@ function Assignment(props){
           text-lg'>Due Date: {props.dueDate}</h3>
         <span className=' text-red-500'>{props.letNote}</span>
           </div>
-        <div className={'text-lg mt-4 ' +theme}>{status}</div>
+          <span className={ !submitValue && 'text-red-500'}>
+          <span className={submitValue && 'text-green-500'}>
+        <div className={'text-lg mt-4 '}>{!submitValue && 'Not Submitted'}{submitValue && 'Submitted'}</div></span></span>
        </div>
          </Link>
         <div className='flex mt-3  text-green-500'>
-        <Button grow onClick={submitClick}><AiOutlineCheckCircle/><span className='ml-2'>{buttonHTML} </span></Button>
-          {linkList && <a className=' w-full py-4 text-lg grow border-l-2 border-gray-200 text-center text-indigo-500 ' href={linkList}  target='blank'>see your submission</a>
-   }
+        <Button grow onClick={submitClick}><AiOutlineCheckCircle/><span className='ml-2'>{!submitValue && 'Submit'}{submitValue && 'Re-Submit'}</span></Button>
+          {submitValue && <a className=' w-full py-4 text-lg grow border-l-2 border-gray-200 text-center text-indigo-500 ' href={props.link}  target='blank'>see your submission</a>}
+   
           </div>
         </div>
   );

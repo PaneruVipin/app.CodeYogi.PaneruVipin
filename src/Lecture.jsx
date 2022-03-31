@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { ImDownload } from 'react-icons/im';
 function Lecture(props){
   return(
-     <div className=' border border-gray-200 bg-white rounded-lg shadow-lg py-2 pl-3 pr-4'>
+     <div className=' border border-gray-200 bg-white rounded-lg shadow-lg py-2 pl-3 pr-4 mb-6'>
         <div className='flex justify-between items-center '>
         <div>
         <div className='flex space-x-6 text-lg'>

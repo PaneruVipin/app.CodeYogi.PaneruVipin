@@ -12,11 +12,17 @@ function LecturePage(){
   const [topiksValue, setTopiksValue]=React.useState('')
   const [linkValue, setLinkValue]=React.useState('')
   
-  const [linkList, setLinkList]=React.useState(['https://google.com'])
-  const [dateList, setDateList]=React.useState(['Tue Mar 22 2022'])
-  const [durationList, setDurationList]=React.useState(['03:35:42'])
-  const [discriptionList, setDiscriptionList]=React.useState(['इस लेक्चर को देखने के बाद Assignment 35 करें।'])
-  const [topiksList, setTopiksList]=React.useState([['डेढ़ घंटे का भाषण 😲']])
+   const saveLinkList = JSON.parse(localStorage.getItem('linkList')) || ['https://google.com'];
+  const saveDateList = JSON.parse(localStorage.getItem('dateList')) || ['Tue Mar 22 2022'];
+  const saveDurationList = JSON.parse(localStorage.getItem('durationList')) || ['03:35:42'];
+  const saveDiscriptionList = JSON.parse(localStorage.getItem('discriptionList')) || ['इस लेक्चर को देखने के बाद Assignment 35 करें।'];
+  const saveTopiksList = JSON.parse(localStorage.getItem('topiksList')) ||[['डेढ़ घंटे का भाषण 😲']];
+  
+  const [linkList, setLinkList]=React.useState(saveLinkList)
+  const [dateList, setDateList]=React.useState(saveDateList)
+  const [durationList, setDurationList]=React.useState(saveDurationList)
+  const [discriptionList, setDiscriptionList]=React.useState(saveDiscriptionList)
+  const [topiksList, setTopiksList]=React.useState(saveTopiksList)
   
   const dateChange=(event)=>setDateValue(event.target.value);
   const discriptionChange=(event)=>setDiscriptionValue(event.target.value);
@@ -37,7 +43,7 @@ function LecturePage(){
   }
    const checkPassword=()=>{
       setPasswordValue('');
-     if(passwordValue==='codeyogi@123'){
+     if(passwordValue==='a'){
     setShowPassword(!showPassword);
        setShowAdminForm(!showAdminForm)
    }
@@ -53,6 +59,8 @@ function LecturePage(){
     setLinkList([...linkList, linkValue])
      setShowAdminForm(!showAdminForm);
      setAddLecture(!addLecture);
+     localStorage.setItem('durationList',JSON.stringify([...durationList,durationValue]));  localStorage.setItem('discriptionList',JSON.stringify([...discriptionList,discriptionValue]));  localStorage.setItem('dateList',JSON.stringify([...dateList,dateValue])); localStorage.setItem('topiksList',JSON.stringify([...topiksList,topiksValue]));
+localStorage.setItem('linkList',JSON.stringify([...linkList, linkValue]));
   }
   return(
     <div className='space-y-5'>
@@ -66,7 +74,7 @@ function LecturePage(){
       {showAdminForm && <div className='bg-gray-500 md:fixed inset-0 md:px-60 md:pt-10 bg-opacity-50'><LectureAdminPage linkChange={linkChange} linkValue={linkValue} dateChange={dateChange} durationChange={durationChange} discriptionChange={discriptionChange} topiksChange={topiksChange} dateValue={dateValue} durationValue={durationValue} discriptionValue={discriptionValue} topiksValue={topiksValue} uploadClick={uploadClick}/> </div>}
     <H1 secondry>Session List</H1>
     <div className='bg-gray-50 max-w-7xl  '>
-      <div className='mx-auto max-w-4xl space-y-6  sm:px-0 py-6 sm:pt-4 sm:pb-8' >
+      <div className='mx-auto max-w-4xl  px-4  py-6 pt-4 pb-8 flex flex-col-reverse' >
         {getObject(dateList,durationList,discriptionList,topiksList,linkList)}
         </div>
     </div>

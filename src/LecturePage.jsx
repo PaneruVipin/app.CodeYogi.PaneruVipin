@@ -13,10 +13,10 @@ function LecturePage(){
   const [linkValue, setLinkValue]=React.useState('')
   
    const saveLinkList = JSON.parse(localStorage.getItem('linkList')) || ['https://google.com'];
-  const saveDateList = JSON.parse(localStorage.getItem('dateList')) || ['Tue Mar 22 2022'];
+  const saveDateList = JSON.parse(localStorage.getItem('LectureDateList')) || ['Tue Mar 22 2022'];
   const saveDurationList = JSON.parse(localStorage.getItem('durationList')) || ['03:35:42'];
   const saveDiscriptionList = JSON.parse(localStorage.getItem('discriptionList')) || ['इस लेक्चर को देखने के बाद Assignment 35 करें।'];
-  const saveTopiksList = JSON.parse(localStorage.getItem('topiksList')) ||[['डेढ़ घंटे का भाषण 😲']];
+  const saveTopiksList = JSON.parse(localStorage.getItem('topiksList')) ||[['डेढ़ घंटे का भाषण 😲','Hello']];
   
   const [linkList, setLinkList]=React.useState(saveLinkList)
   const [dateList, setDateList]=React.useState(saveDateList)
@@ -59,7 +59,7 @@ function LecturePage(){
     setLinkList([...linkList, linkValue])
      setShowAdminForm(!showAdminForm);
      setAddLecture(!addLecture);
-     localStorage.setItem('durationList',JSON.stringify([...durationList,durationValue]));  localStorage.setItem('discriptionList',JSON.stringify([...discriptionList,discriptionValue]));  localStorage.setItem('dateList',JSON.stringify([...dateList,dateValue])); localStorage.setItem('topiksList',JSON.stringify([...topiksList,topiksValue]));
+     localStorage.setItem('durationList',JSON.stringify([...durationList,durationValue]));  localStorage.setItem('discriptionList',JSON.stringify([...discriptionList,discriptionValue]));  localStorage.setItem('LectureDateList',JSON.stringify([...dateList,dateValue])); localStorage.setItem('topiksList',JSON.stringify([...topiksList,topiksValue]));
 localStorage.setItem('linkList',JSON.stringify([...linkList, linkValue]));
   }
   return(
@@ -91,7 +91,7 @@ const HTML=[];
     const note=discriptionList[i];
    const link=linkList[i];
     const html=
-    <Lecture note={ note!=false && 'Note:' + note} link={link} key={i} topiks={ getTopiks(topik)} duration={duration} date={date}>{name}</Lecture>;
+    <Lecture note={ note!=false && 'Note:' + note} link={link} key={'m'+ i} topiks={ getTopiks(topik)} duration={duration} date={date}>{name}</Lecture>;
     HTML.push(html)
   } 
   return HTML;
@@ -100,7 +100,7 @@ function getTopiks(topik){
   const TopiksHTML=[];
   for (let i = 0; i < topik.length; i++) {
    const newTopiks=topik[i];
-    const html =newTopiks!=false && <li key={i} className='list-disc'>{newTopiks}</li>;
+    const html = newTopiks && <li key={i} className='list-disc'>{newTopiks}</li>;
     TopiksHTML.push(html);
   }
   return TopiksHTML;

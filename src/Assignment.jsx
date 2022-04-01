@@ -17,11 +17,11 @@ function Assignment(props){
     props.update(submitValue)
     setButtonClick(!buttonClick)
   }
+  console.log(props.link)
   const submitClick=()=>{
     setButtonClick(!buttonClick)
   }
-  const linkgs=JSON.parse(localStorage.getItem('linkList'))
-  
+
   let theme='text-red-500'
   let status='Not Submitted'
   let buttonHTML='Submit'
@@ -58,14 +58,13 @@ function Assignment(props){
           text-lg'>Due Date: {props.dueDate}</h3>
         <span className=' text-red-500'>{props.letNote}</span>
           </div>
-          <span className={ !submitValue && 'text-red-500'}>
-          <span className={submitValue && 'text-green-500'}>
-        <div className={'text-lg mt-4 '}>{!submitValue && 'Not Submitted'}{submitValue && 'Submitted'}</div></span></span>
+          
+        <div className={'text-lg mt-4 '}></div>
        </div>
          </Link>
         <div className='flex mt-3  text-green-500'>
-        <Button grow onClick={submitClick}><AiOutlineCheckCircle/><span className='ml-2'>{!submitValue && 'Submit'}{submitValue && 'Re-Submit'}</span></Button>
-          {submitValue && <a className=' w-full py-4 text-lg grow border-l-2 border-gray-200 text-center text-indigo-500 ' href={props.link}  target='blank'>see your submission</a>}
+        <Button grow onClick={submitClick}><AiOutlineCheckCircle/><span className='ml-2'></span></Button>
+          {props.link && <a className=' w-full py-4 text-lg grow border-l-2 border-gray-200 text-center text-indigo-500 ' href={props.link}  target='blank'>see your submission</a>}
    
           </div>
         </div>

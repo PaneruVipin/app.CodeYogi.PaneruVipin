@@ -51,8 +51,9 @@ function AssignmentPage(){
      setAddAssignment(!addAssignment); 
 localStorage.setItem('titleList',JSON.stringify([...titleList,titleValue]));  localStorage.setItem('dueDateList',JSON.stringify([...dueDateList,dueDateValue]));  localStorage.setItem('dateList',JSON.stringify([...dateList,dateValue]));
   }
-  const savelinkList=JSON.parse(localStorage.getItem('linkList')) || []
-const linkList=savelinkList
+  const saveLink=localStorage.getItem('link'+ localStorage.getItem('i')) || '';
+    const [linkList, setLinkList]=React.useState(saveLink)
+  
   return(
   <div className='space-y-5'>
     <div className='   space-y-2'>
@@ -66,34 +67,33 @@ const linkList=savelinkList
     <H1 secondry>Assignment List</H1>
     <div className='bg-gray-50 max-w-7xl '>
       <div className='mx-auto max-w-4xl  py-6 pt-4 px-4 pb-8 flex flex-col-reverse' >
-        {getObject(dateList, dueDateList, titleList,linkList)}
+        {getObject(dateList, dueDateList, titleList,setLinkList)}
         </div>
     </div>
   </div>
   );
 }
-function getObject(dateList, dueDateList, titleList,linkList){
+function getObject(dateList, dueDateList, titleList,setLinkList){
 const HTML=[];
-     
   for (let i = 0; i < dateList.length; i++) {
- 
-    let link='savelinkList';
-    /*localStorage.setItem("lastname", "Smith");
-localStorage.getItem("lastname");*/
   const update=(submitValue)=>{
-       link = submitValue
-    linkList[i]=link
-    console.log(linkList)
-    localStorage.setItem('linkList', JSON.stringify(linkList))
+    setLinkList(submitValue)
+    localStorage.setItem('link'+i,submitValue )
   }
+    localStorage.setItem('i',i)
     const id='#'+(i+1);
    const title=titleList[i];
    const date=dateList[i];
    const dueDate=dueDateList[i];
     const html=
-    <Assignment update={update} link={linkList[i]} to={'/assignment/'+(i+1)+'/details'}  id={id} key={id} title={title} date={date} dueDate={dueDate}></Assignment>;
+    <Assignment update={update} link={localStorage.getItem('link'+i) || ''} to={'/assignment/'+(i+1)+'/details'}  id={id} key={id} title={title} date={date} dueDate={dueDate}></Assignment>;
     HTML.push(html)
   }
   return HTML; 
 }
 export default AssignmentPage;
+
+
+
+ /*localStorage.setItem("lastname", "Smith");
+localStorage.getItem("lastname");*/

@@ -59,11 +59,11 @@ function Assignment(props){
         <span className=' text-red-500'>{props.letNote}</span>
           </div>
           
-        <div className={'text-lg mt-4 '}></div>
+        <div className={'text-lg mt-4 '+ theme}>{status}</div>
        </div>
          </Link>
         <div className='flex mt-3  text-green-500'>
-        <Button grow onClick={submitClick}><AiOutlineCheckCircle/><span className='ml-2'></span></Button>
+        <Button grow onClick={submitClick}><AiOutlineCheckCircle/><span className='ml-2'>{buttonHTML}</span></Button>
           {props.link && <a className=' w-full py-4 text-lg grow border-l-2 border-gray-200 text-center text-indigo-500 ' href={props.link}  target='blank'>see your submission</a>}
    
           </div>

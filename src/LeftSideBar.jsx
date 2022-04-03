@@ -2,6 +2,7 @@ import React from 'react';
 import MyLink from './MyLink';
 import H1 from './H1';
 import { MdOutlineAssignment, MdOutlineQuiz } from 'react-icons/md';
+import { HiOutlineUserGroup } from 'react-icons/hi';
 import { CgProfile } from 'react-icons/cg';
 import { GiTeacher } from 'react-icons/gi';
 function LeftSideBar(props){
@@ -17,6 +18,7 @@ function LeftSideBar(props){
       <MyLink to='quiz'  icon={<MdOutlineQuiz  className=' flex-shrink-0 h-6 w-6'/>}>Quiz</MyLink>
       <MyLink to='lecture'  icon={<GiTeacher  className=' flex-shrink-0 h-6 w-6'/>}>Lectures</MyLink>
             <MyLink to='assignment' icon={<MdOutlineAssignment  className=' flex-shrink-0 h-6 w-6'/>}>Assignment</MyLink>
+           <MyLink to='students' icon={<HiOutlineUserGroup  className=' flex-shrink-0 h-6 w-6'/>}>Students</MyLink>
            </div>
       <MyLink  to='profile'  icon={<CgProfile  className=' flex-shrink-0 h-6 w-6 '/>}>Profile</MyLink>
     </div>

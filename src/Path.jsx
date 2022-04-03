@@ -4,6 +4,7 @@ import AssignmentPage from './AssignmentPage';
 import LecturePage from './LecturePage';
 import QuizPage from './QuizPage';
 import MainLayout from './MainLayout';
+import StudentsPage from './StudentsPage'
 import ProfilePage from './ProfilePage';
 import AssignmentDetailPage from './AssignmentDetailPage';
 import { Routes, Route } from "react-router-dom";
@@ -12,12 +13,13 @@ function Path(){
     <div>
       <Routes>
         <Route path='/' element={<MainLayout/>}>
-      <Route index element={<LecturePage/>}/>
+          <Route index element={<LecturePage/>}/>
            <Route path='assignment' element={<AssignmentPage/>}/>
-      <Route path='lecture' element={<LecturePage/>}/>
-         <Route path='profile' element={<ProfilePage/>}/>
+           <Route path='lecture' element={<LecturePage/>}/>
+          <Route path='profile' element={<LecturePage/>}/>
+          <Route path='students' element={<StudentsPage/>}/>
           {
-          getDetailsPath()
+           getDetailsPath()
           }
         </Route>
       <Route path='quiz' element={<QuizPage/>}/>

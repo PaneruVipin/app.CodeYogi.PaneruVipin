@@ -10,10 +10,13 @@ function AssignmentPage(){
    const [dateValue, setDateValue]=React.useState('')
   const [dueDateValue, setDueDateValue]=React.useState('')
   const [titleValue, setTitleValue]=React.useState('')
+   const [discriptionValue, setDiscriptionValue]=React.useState('')
   
   const saveTitleList = JSON.parse(localStorage.getItem('titleList')) || ['Practice responsive design'];
   const saveDateList = JSON.parse(localStorage.getItem('dateList')) || ['Tue Mar 22 2022'];
   const saveDueDateList = JSON.parse(localStorage.getItem('dueDateList')) || ['Fri Jan 21 2022'];
+  const saveDiscriptionList=JSON.parse(localStorage.getItem('discriptionList')) || ['Hello World'];
+  const [discriptionList, setDiscriptionList]=React.useState(saveDiscriptionList)
   const [titleList, setTitleList]=React.useState(saveTitleList)
   const [dateList, setDateList]=React.useState(saveDateList)
   const [dueDateList, setDueDateList]=React.useState(saveDueDateList)
@@ -21,6 +24,7 @@ function AssignmentPage(){
   const dateChange=(event)=>setDateValue(event.target.value);
   const dueDateChange=(event)=>setDueDateValue(event.target.value);
   const titleChange=(event)=>setTitleValue(event.target.value);
+  const discriptionChange=()=>setDiscriptionValue(event.target.value)
   
   const [addAssignment, setAddAssignment]=React.useState(true)
   const [showPassword, setShowPassword]=React.useState(false)
@@ -44,12 +48,14 @@ function AssignmentPage(){
      if(dateValue==='' || dueDateValue==='' || titleValue==='' ||dateValue===undefined || dueDateValue===undefined || titleValue===undefined)       {
        return;
         }
+       setDiscriptionList([...discriptionList, discriptionValue])
          setDateList([...dateList,dateValue])
     setDueDateList([...dueDateList,dueDateValue])
     setTitleList([...titleList,titleValue])
      setShowAdminForm(!showAdminForm);
      setAddAssignment(!addAssignment); 
 localStorage.setItem('titleList',JSON.stringify([...titleList,titleValue]));  localStorage.setItem('dueDateList',JSON.stringify([...dueDateList,dueDateValue]));  localStorage.setItem('dateList',JSON.stringify([...dateList,dateValue]));
+     localStorage.setItem('discriptionList',JSON.stringify([...discriptionList, discriptionValue]));
   }
   const saveLink=localStorage.getItem('link'+ localStorage.getItem('i')) || '';
     const [linkList, setLinkList]=React.useState(saveLink)

@@ -7,6 +7,7 @@ function AssignmentAdminPage(props){
      <FormCard  onChange={props.dateChange} value={props.dateValue} placeholder='Date' mandatory date>Date</FormCard>
      <FormCard mandatory onChange={props.dueDateChange} value={props.dueDateValue} placeholder='Assignment due Date' date>Due Date</FormCard>
      <FormCard onChange={props.titleChange} value={props.titleValue} placeholder='Assignment Title'>Assignment Title</FormCard>
+        <FormCard onChange={props.discriptionChange} value={props.discriptionValue} placeholder='Assignment Discription'>Assignment Discription</FormCard>
         <div className='pl-1 pt-5 pb-8'>
       <Button onClick={props.uploadClick}>Upload</Button>
         </div>

@@ -7,7 +7,7 @@ import MainLayout from './MainLayout';
 import StudentsPage from './StudentsPage'
 import ProfilePage from './ProfilePage';
 import AssignmentDetailPage from './AssignmentDetailPage';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 function Path(){
   return(
     <div>
@@ -18,22 +18,12 @@ function Path(){
            <Route path='lecture' element={<LecturePage/>}/>
           <Route path='profile' element={<LecturePage/>}/>
           <Route path='students' element={<StudentsPage/>}/>
-          {
-           getDetailsPath()
-          }
+          <Route path={`assignment/:id/details`} element={<AssignmentDetailPage/>}/>
         </Route>
       <Route path='quiz' element={<QuizPage/>}/>
       <Route path='*' element={<NotFoundPage/>}/>
     </Routes>
     </div>
   );
-}
-function getDetailsPath(){
-  const A=[]
-  for (let i = 1; i < 100 ; i++) {
-    const a=<Route key={'m'+1} path={'assignment/'+i+'/details'} element={<AssignmentDetailPage/>}/>;
-    A.push(a);
-  }
-  return A;
 }
 export default Path;

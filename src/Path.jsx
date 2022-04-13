@@ -16,7 +16,7 @@ function Path(){
           <Route index element={<LecturePage/>}/>
            <Route path='assignment' element={<AssignmentPage/>}/>
            <Route path='lecture' element={<LecturePage/>}/>
-          <Route path='profile' element={<LecturePage/>}/>
+          <Route path='profile' element={<ProfilePage/>}/>
           <Route path='students' element={<StudentsPage/>}/>
           <Route path={`assignment/:id/details`} element={<AssignmentDetailPage/>}/>
         </Route>

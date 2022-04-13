@@ -11,7 +11,7 @@ function Lecture({data}){
     <h3>Lecture  #{data.id}</h3>
         <span className='text-gray-400'>({data.created_at})</span>
     </div>
-        <h3 className='mt-2  text-red-500 text-sm'>Duration: {data.duration}</h3>
+        <h3 className='mt-2  text-red-500 text-sm'>Duration: {data.duration.hours} : {data.duration.minutes} : {data.duration.seconds}</h3>
           <div className='mt-5 pl-4 space-y-2 listStyle'>
             <MDEditor.Markdown  source={data.topic}/>
             </div>

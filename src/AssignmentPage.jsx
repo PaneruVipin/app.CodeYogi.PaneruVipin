@@ -16,7 +16,6 @@ function AssignmentPage() {
 		});
 		token.then(response => {
 			setAssignments(response.data);
-      console.log(response.data)
 			setCleanedAssignments(
 				response.data.map(a => {
 					const newList = {
@@ -24,7 +23,8 @@ function AssignmentPage() {
 						created_at: DateTime.fromISO(a.created_at).toFormat('ccc dd LLL yyyy'),
 						title: a.title,
 						due_date: DateTime.fromISO(a.due_date).toFormat('ccc dd LLL yyyy'),
-            description:a.description
+            description:a.description,
+            submission:a.submissions[0].submission_link
 					};
 					return newList;
 				})
@@ -37,14 +37,14 @@ function AssignmentPage() {
 						created_at: DateTime.fromISO(a.created_at).toFormat('ccc dd LLL yyyy'),
 						title: a.title,
 						due_date: DateTime.fromISO(a.due_date).toFormat('ccc dd LLL yyyy'),
-            description:a.description
+            description:a.description,
+            submission:a.submissions[0].submission_link
 					};
 					return newList;
 				}))
 			);
 		});
 	}, []);
-
 	return (
 		<div className="space-y-5">
 			<H1 secondry>Assignment List</H1>

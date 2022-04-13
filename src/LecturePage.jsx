@@ -22,6 +22,7 @@ function LecturePage(){
         created_at:DateTime.fromISO(l.created_at).toFormat('ccc dd LLL yyyy'),
         topic:l.topic,
         recording_url:l.recording_url,
+        duration:DateTime.fromISO(l.end_time).diff(DateTime.fromISO(l.start_time), [ 'hours', 'minutes', 'seconds']).values
       }
       return newList;
     }));
@@ -31,6 +32,7 @@ function LecturePage(){
         created_at:DateTime.fromISO(l.created_at).toFormat('ccc dd LLL yyyy'),
         topic:l.topic,
         recording_url:l.recording_url,
+        duration:DateTime.fromISO(l.end_time).diff(DateTime.fromISO(l.start_time), [ 'hours', 'minutes', 'seconds']).values
       }
       return newList;
     })))

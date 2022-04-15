@@ -30,7 +30,7 @@ function FormCard(props){
         <input type={date} onChange={props.onChange} value={props.value} placeholder={props.placeholder} className={' px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 rounded-md  ' + width}/>
       </div>
         </div>
-      {props.error && <span className='flex justify-center text-red-500 mt-4 text-md font-medium'>{props.error}</span>}
+       <span className='flex justify-center text-red-500 mt-4 text-md font-medium h-5'>{props.error && props.error}</span>
       </div>
   );
 }

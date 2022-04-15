@@ -33,9 +33,14 @@ function Assignment({ data }) {
     }else if(urlValid){
       axios.put( `https://api.codeyogi.io/${data.id}/submit`,
 			{ submissionLink }, { withCredentials: true }  );
-      setToggleSubmitPopUp(!toggleSubmitPopUp)
+      setToggleSubmitPopUp(!toggleSubmitPopUp);
+      setSubmissionLink('')
     }
 	};
+  const CancelClick=()=>{
+    setToggleSubmitPopUp(!toggleSubmitPopUp);
+    setUrlError('') ;                                             setSubmissionLink('');
+    }
 	return (
 		<div className="border border-gray-200 bg-white rounded-lg shadow-lg py-2 pl-3 pr-4 ">
       {toggleSubmitPopUp &&
@@ -47,7 +52,7 @@ function Assignment({ data }) {
 							</FormCard>
 							<div className="pl-1 pt-5 pb-8 flex space-x-6">
 								<Button onClick={submitAssignment}>Update</Button>
-                <Button secondry onClick={()=>setToggleSubmitPopUp(!toggleSubmitPopUp)}>Cancel</Button>
+                <Button secondry onClick={CancelClick}>Cancel</Button>
 							</div>
 							<div/>
 						</div>

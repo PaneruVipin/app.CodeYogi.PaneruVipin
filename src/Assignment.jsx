@@ -6,8 +6,7 @@ import { AiOutlineCheckCircle } from 'react-icons/ai';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import FormCard from './FormCard';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {string} from 'yup';
 import axios from 'axios';
 function Assignment({ data }) {
@@ -42,7 +41,7 @@ function Assignment({ data }) {
     setUrlError('') ;                                             setSubmissionLink('');
     }
 	return (
-		<div className="border border-gray-200 bg-white rounded-lg shadow-lg py-2 pl-3 pr-4 ">
+		<div className="border border-gray-200 bg-white rounded-lg shadow-lg pt-2 pl-3 pr-4 ">
       {toggleSubmitPopUp &&
 					<div className="fixed bg-gray-500 bg-opacity-50 inset-x-0 inset-y-0 flex justify-center items-center px-4 ">
 						<div className="bg-white max-w-7xl px-4 grow  max-w-4xl ">
@@ -84,7 +83,7 @@ function Assignment({ data }) {
 					<span className="ml-2">{buttonHTML}</span>
 				</Button>
 				{data.submission && <a
-						className=" w-full py-4 text-lg grow border-l-2 border-gray-200 text-center text-indigo-500 "
+						className=" w-full py-4 text-lg grow border-l-2 border-gray-100 text-center text-indigo-500 "
 						href={data.submission}
 						target="blank"
 					>

@@ -1,48 +1,35 @@
 import React from 'react';
 import H1 from './H1';
 import Assignment from './Assignment';
-import axios from 'axios';
 import { DateTime } from 'luxon';
+import { getAssignments } from './Api';
+import { saveData } from './SaveData';
+import { useSaveData } from './SaveData';
 function AssignmentPage() {
 	const [assignments, setAssignments] = React.useState([]);
-	const saveCleanedAssignments =
-		JSON.parse(localStorage.getItem('cleanedAssignment')) || [];
+	const saveCleanedAssignments = useSaveData('cleanedAssignment') || [];
 	const [cleanedAssignments, setCleanedAssignments] = React.useState(
 		saveCleanedAssignments
 	);
 	React.useEffect(() => {
-		const token = axios.get(`https://api.codeyogi.io/batches/1/assignments`, {
-			withCredentials: true
-		});
+		const token = getAssignments();
 		token.then(response => {
 			setAssignments(response.data);
-			setCleanedAssignments(
-				response.data.map(a => {
-					const newList = {
-						id: a.id,
-						created_at: DateTime.fromISO(a.created_at).toFormat('ccc dd LLL yyyy'),
-						title: a.title,
-						due_date: DateTime.fromISO(a.due_date).toFormat('ccc dd LLL yyyy'),
-            description:a.description,
-            submission:a.submissions[0].submission_link
-					};
-					return newList;
-				})
-			);
-			localStorage.setItem(
-				'cleanedAssignment',
-				JSON.stringify(response.data.map(a => {
-					const newList = {
-						id: a.id,
-						created_at: DateTime.fromISO(a.created_at).toFormat('ccc dd LLL yyyy'),
-						title: a.title,
-						due_date: DateTime.fromISO(a.due_date).toFormat('ccc dd LLL yyyy'),
-            description:a.description,
-            submission:a.submissions[0].submission_link
-					};
-					return newList;
-				}))
-			);
+			const filteredAssignment = response.data.map(a => {
+				const newList = {
+					id: a.id,
+					created_at: DateTime.fromISO(a.created_at).toFormat(
+						'ccc dd LLL yyyy'
+					),
+					title: a.title,
+					due_date: DateTime.fromISO(a.due_date).toFormat('ccc dd LLL yyyy'),
+					description: a.description,
+					submission: a.submissions[0].submission_link
+				};
+				return newList;
+			});
+			setCleanedAssignments(filteredAssignment);
+			saveData('cleanedAssignment', filteredAssignment);
 		});
 	}, []);
 	return (

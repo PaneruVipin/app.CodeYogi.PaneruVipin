@@ -23,6 +23,6 @@ export const getAssignmentDetails =(assignmentId)=> {
   return responsePromise;
 }
 export const getStudents =()=> {
-  const responsePromise = axios.get(base_randomUser_api+'?results=2000');
+  const responsePromise = axios.get(base_randomUser_api+'?results=5');
   return responsePromise;
 }

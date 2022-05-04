@@ -4,11 +4,12 @@ import MyLink from './MyLink';
 import { MdContentCut } from 'react-icons/md';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import Button from './Button';
-import { Link } from 'react-router-dom';
-import FormCard from './FormCard';
-import { useNavigate, useParams } from 'react-router-dom';
-import {string} from 'yup';
+import { FormCard } from './InputCard';
+import { useNavigate, useParams, Link } from 'react-router-dom';
+import {string, object} from 'yup';
 import axios from 'axios';
+import { GoFileSymlinkDirectory } from 'react-icons/go';
+import { setUpForm,validationForm,Form} from './Form';
 function Assignment({ data }) {
   let status= 'Not Submitted';
   let theme='text-red-500';
@@ -19,42 +20,44 @@ function Assignment({ data }) {
  buttonHTML='Re-Submit';
   }
 	const navigate = useNavigate();
-	const [submissionLink, setSubmissionLink] = React.useState('');
-  const [urlError,setUrlError] =React.useState('')
-  const [toggleSubmitPopUp, setToggleSubmitPopUp] = React.useState(false);
-	const submitAssignment = () => {
-  const urlValidator=string().url();
-    const urlValid=urlValidator.isValidSync(submissionLink, {strict:true})
-     const urlError =urlValid ? '' : 'Please enter the valid url/link';
-     setUrlError(urlError);
-    if(!submissionLink){
-      return;
-    }else if(urlValid){
-      axios.put( `https://api.codeyogi.io/${data.id}/submit`,
-			{ submissionLink }, { withCredentials: true }  );
-      setToggleSubmitPopUp(!toggleSubmitPopUp);
-      setSubmissionLink('')
-    }
+	const { formData, handleChange } = setUpForm({
+    Submission:''
+  })
+ 
+  const [toggleSubmitPopUp, setToggleSubmitPopUp] =React.useState(false);
+	const onSubmit = () => {
+    
+     
 	};
   const CancelClick=()=>{
-    setToggleSubmitPopUp(!toggleSubmitPopUp);
-    setUrlError('') ;                                             setSubmissionLink('');
+    setToggleSubmitPopUp(!toggleSubmitPopUp);     
     }
+  const {blur, error} = validationForm(
+   object().shape(
+     {Submission:string().url()}
+   ) ,
+    formData
+  )
+
+ console.log('what is error', error, blur, formData.Submission)
+  
 	return (
 		<div className="border border-gray-200 bg-white rounded-lg shadow-lg pt-2 pl-3 pr-4 ">
       {toggleSubmitPopUp &&
 					<div className="fixed bg-gray-500 bg-opacity-50 inset-x-0 inset-y-0 flex justify-center items-center px-4 ">
 						<div className="bg-white max-w-7xl px-4 grow  max-w-4xl ">
-							<div className="pl-6 py-6  border-b border-gray-200" />
-							<FormCard error={urlError} value={submissionLink} onChange={()=>setSubmissionLink(event.target.value)}>
+							<Form onSubmit={ onSubmit } className="pl-6 py-6 bg-red-500 border-b border-gray-200" >
+							<FormCard
+                name='Submission'
+                error={error} value={formData.Submission} onChange={handleChange} onBlur={blur}>
 								Submission Link
 							</FormCard>
 							<div className="pl-1 pt-5 pb-8 flex space-x-6">
-								<Button onClick={submitAssignment}>Update</Button>
-                <Button secondry onClick={CancelClick}>Cancel</Button>
+								<Button type='submit' >Update</Button>
+                <Button type='button' secondry onClick={CancelClick}>Back</Button>
 							</div>
-							<div/>
-						</div>
+                </Form>
+						</div> 
 					</div>
       }
 			<div
@@ -82,11 +85,13 @@ function Assignment({ data }) {
 					<AiOutlineCheckCircle />
 					<span className="ml-2">{buttonHTML}</span>
 				</Button>
-				{data.submission && <a
-						className=" w-full py-4 text-lg grow border-l-2 border-gray-100 text-center text-indigo-500 "
+				{data.submission &&
+          <a
+						className="flex justify-center gap-x-2 items-center w-full py-4 text-lg grow border-l-2 border-gray-100 text-center text-indigo-500 "
 						href={data.submission}
 						target="blank"
 					>
+            <GoFileSymlinkDirectory/>
 						see your submission
 					</a>
 				}

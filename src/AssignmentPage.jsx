@@ -3,8 +3,7 @@ import H1 from './H1';
 import Assignment from './Assignment';
 import { DateTime } from 'luxon';
 import { getAssignments } from './Api';
-import { saveData } from './SaveData';
-import { useSaveData } from './SaveData';
+import { useSaveData, saveData } from './Storage';
 function AssignmentPage() {
 	const [assignments, setAssignments] = React.useState([]);
 	const saveCleanedAssignments = useSaveData('cleanedAssignment') || [];

@@ -2,15 +2,13 @@ import React from 'react';
 import H1 from './H1';
 import AssignmentDetailRow from './AssignmentDetailRow';
 import Button from './Button';
-import FormCard from './FormCard';
 import { FiLogIn } from 'react-icons/fi';
 import MDEditor from '@uiw/react-md-editor';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { DateTime } from 'luxon';
 import { getAssignmentDetails } from './Api';
-import { saveData } from './SaveData';
-import { useSaveData } from './SaveData';
+import { useSaveData, saveData } from './Storage';
 function AssignmentDetailPage() {
 	const data = useParams();
 	const saveDetails = useSaveData('details' + data.id) || {};

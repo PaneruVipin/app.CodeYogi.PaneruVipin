@@ -2,13 +2,11 @@ import React from 'react';
 import H1 from './H1';
 import Lecture from './Lecture';
 import Button from './Button';
-import FormCard from './FormCard';
 import { FiLogIn } from 'react-icons/fi';
 import axios from 'axios';
 import { DateTime } from 'luxon';
 import { getLectures } from './Api';
-import { saveData } from './SaveData';
-import { useSaveData } from './SaveData';
+import { useSaveData, saveData } from './Storage';
 function LecturePage() {
 	const [lectures, setLectures] = React.useState([]);
 	const saveCleanedLectures = useSaveData('cleanedLectures') || [];

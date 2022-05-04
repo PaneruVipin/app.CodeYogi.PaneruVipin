@@ -1,5 +1,5 @@
 import React from "react"
-function StudentsCard({students}){
+function StudentsCard({students,}){
   return(
    <div className='w-80 space-y-1 font-medium text-md'>
   <img className='w-64  rounded-md object-cover' src={students.picture.large}/>

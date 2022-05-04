@@ -25,22 +25,24 @@ function Assignment({ data }) {
   })
  
   const [toggleSubmitPopUp, setToggleSubmitPopUp] =React.useState(false);
-	const onSubmit = () => {
-    
-     
-	};
+
   const CancelClick=()=>{
     setToggleSubmitPopUp(!toggleSubmitPopUp);     
     }
   const {blur, error} = validationForm(
    object().shape(
-     {Submission:string().url()}
+     {Submission:string().required().nullable().url()}
    ) ,
     formData
   )
-
- console.log('what is error', error, blur, formData.Submission)
-  
+  	const onSubmit = () => {
+       if(!formData.Submission){
+        return;
+      }else if(!error){
+        console.log(' submission is ', formData)
+      CancelClick()
+      }
+     };
 	return (
 		<div className="border border-gray-200 bg-white rounded-lg shadow-lg pt-2 pl-3 pr-4 ">
       {toggleSubmitPopUp &&

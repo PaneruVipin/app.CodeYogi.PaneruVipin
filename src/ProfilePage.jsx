@@ -85,12 +85,12 @@ function ProfilePage() {
 					Date Of Birth
 				</MyFormikInput>
 
-				<div className="flex md:flex-row flex-col md:justify-between px-6 py-5 md:items-center md:border-b md:border-gray-200">
+				<div className="flex md:flex-row flex-col md:justify-between px-6 py-5 md:items-center md:border-b border-gray-200">
           <div>
-						<Label>Device you are using to do your assignments</Label>
+						<Label>Device you are using<br/> to do your assignments</Label>
 						<span className="text-red-500 text-sm font-medium ml-1">*</span>
 					</div>
-          <div className="grow max-w-3xl mt-2 md:mt-0">
+          <div className=" w-full max-w-3xl mt-2 md:mt-0">
 						<select 
               name='Work_device'
               id='Work_device'
